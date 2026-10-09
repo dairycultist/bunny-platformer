@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://broycc76gxur3" path="res://icon.svg" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://wmjpp8vosouw" path="res://player.gd" id="2_fj7yv"]
+[ext_resource type="Texture2D" uid="uid://cow300j11pdr3" path="res://player_idle.png" id="3_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://dutgb0qgjvk3q" path="res://player_roll.png" id="4_036b0"]
+[ext_resource type="Texture2D" uid="uid://r7b7c183ybk4" path="res://player_run.png" id="4_aqk2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
 size = Vector2(200, 20)
@@ -16,6 +19,75 @@ size = Vector2(400, 20)
 size = Vector2(400, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ryr"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_036b0"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tlwt5")]
+}
+
+[sub_resource type="Animation" id="Animation_dwbse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_tlwt5")]
+}
+
+[sub_resource type="Animation" id="Animation_gbfbk"]
+resource_name = "Roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_036b0")]
+}
+
+[sub_resource type="Animation" id="Animation_pkg7o"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("4_aqk2v"), ExtResource("3_tlwt5")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gbfbk"]
+_data = {
+&"Idle": SubResource("Animation_036b0"),
+&"RESET": SubResource("Animation_dwbse"),
+&"Roll": SubResource("Animation_gbfbk"),
+&"Run": SubResource("Animation_pkg7o")
+}
 
 [node name="World" type="Node2D" unique_id=1413734211]
 
@@ -52,8 +124,14 @@ script = ExtResource("2_fj7yv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=958945265]
 shape = SubResource("RectangleShape2D_x0ryr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=34044061]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("1_f3sb7")
+[node name="Sprite" type="Sprite2D" parent="Player" unique_id=34044061]
+texture_filter = 1
+texture = ExtResource("3_tlwt5")
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=648129712]
+[node name="Camera" type="Camera2D" parent="Player" unique_id=648129712]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="Animation" type="AnimationPlayer" parent="Player" unique_id=484171174]
+libraries/ = SubResource("AnimationLibrary_gbfbk")
