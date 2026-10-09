@@ -5,7 +5,8 @@ const WALK_ACCELERATION = 3.5
 const RUN_SPEED = 180.0
 const RUN_ACCELERATION = 0.2
 const JUMP_VELOCITY = -180.0
-const ROLL_DRAG = 0.8
+const ROLL_JUMP_VELOCITY = -100.0
+const ROLL_DRAG = 0.5
 const ROLL_BRAKES = 2.0
 
 enum State {
@@ -15,7 +16,7 @@ enum State {
 
 var state: State
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	$Camera.global_position.y = 0.0
 
@@ -29,6 +30,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 		elif state == State.NORMAL:
 			state = State.ROLLING
+			velocity.y = ROLL_JUMP_VELOCITY
 	
 	#elif Input.is_action_just_pressed("ui_down"):
 		#if state == State.NORMAL:
@@ -59,17 +61,19 @@ func _physics_process(delta: float) -> void:
 
 	var prev_velocity := velocity
 
+	floor_snap_length = abs(velocity.x * delta) + 1.0
 	move_and_slide()
 	
 	# roll physics
 	if is_on_floor() and state == State.ROLLING:
 		velocity = prev_velocity - get_floor_normal() * (prev_velocity.dot(get_floor_normal()))
 		
-		if velocity.x < WALK_SPEED and get_floor_normal() == Vector2.UP:
+		if velocity.x < WALK_SPEED and (get_floor_normal() == Vector2.UP or (direction != 0.0 and sign(velocity.x) != sign(direction))):
 			state = State.NORMAL
 	
 	# determine animation
-	$Sprite.flip_h = sign(velocity.x) == -1
+	if abs(velocity.x) > 0.1:
+		$Sprite.flip_h = sign(velocity.x) == -1
 	
 	match state:
 		State.NORMAL:
