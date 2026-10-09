@@ -1,276 +1,59 @@
 [gd_scene format=3 uid="uid://dtkmryync4m25"]
 
-[ext_resource type="MeshLibrary" uid="uid://c116vpbthr5rx" path="res://grid.tres" id="1_fj7yv"]
-[ext_resource type="Script" uid="uid://wsr7gkvx2yin" path="res://player/player.gd" id="3_036b0"]
-[ext_resource type="Shader" uid="uid://dwmvqm8ecgorv" path="res://postprocesser.gdshader" id="3_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://b54ddbnfhobl5" path="res://player/sprites/idle1.png" id="4_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://5pnclv5esc1l" path="res://player/sprites/walk1.png" id="5_dwbse"]
-[ext_resource type="Texture2D" uid="uid://d08rc6tybfxd5" path="res://player/sprites/fall1.png" id="5_gbfbk"]
-[ext_resource type="Texture2D" uid="uid://tyt211p842j7" path="res://player/sprites/jump1.png" id="5_pkg7o"]
-[ext_resource type="Texture2D" uid="uid://d0lyaprnyrh1c" path="res://player/sprites/flying_kickdash1.png" id="6_ic0uy"]
-[ext_resource type="Texture2D" uid="uid://ddut1futkamiu" path="res://player/sprites/walk2.png" id="6_pkg7o"]
-[ext_resource type="Texture2D" uid="uid://bw8ero4k7v640" path="res://player/sprites/kick1.png" id="7_ioo17"]
-[ext_resource type="Texture2D" uid="uid://cwad6ags4pxp7" path="res://player/sprites/punch1.png" id="8_wse8f"]
-[ext_resource type="Texture2D" uid="uid://cky474bpf3pi1" path="res://player/sprites/sliding_kickdash1.png" id="10_k3n1d"]
-[ext_resource type="Texture2D" uid="uid://d2eyf1j7ca8x0" path="res://player/sprites/uppercut1.png" id="11_2o6r5"]
+[ext_resource type="Texture2D" uid="uid://broycc76gxur3" path="res://icon.svg" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://wmjpp8vosouw" path="res://player.gd" id="2_fj7yv"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tlwt5"]
-shader = ExtResource("3_aqk2v")
-shader_parameter/y_res = 240
-shader_parameter/fisheye = 0.125
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3sb7"]
+size = Vector2(200, 20)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lxpj2"]
+[sub_resource type="QuadMesh" id="QuadMesh_fj7yv"]
+size = Vector2(200, 20)
 
-[sub_resource type="Animation" id="Animation_gbfbk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_aqk2v")]
-}
-tracks/1/type = "scale_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxpj2"]
+size = Vector2(400, 20)
 
-[sub_resource type="Animation" id="Animation_k3n1d"]
-resource_name = "fall"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_gbfbk")]
-}
+[sub_resource type="QuadMesh" id="QuadMesh_lxpj2"]
+size = Vector2(400, 20)
 
-[sub_resource type="Animation" id="Animation_hiqwa"]
-resource_name = "flying_kickdash"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("6_ic0uy")]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ryr"]
 
-[sub_resource type="Animation" id="Animation_70uel"]
-resource_name = "flying_tornado_kick"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_ioo17")]
-}
-tracks/1/type = "scale_3d"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite3D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.1, 1, -1, 1, 1, 0.2, 1, 1, 1, 1)
+[node name="World" type="Node2D" unique_id=1413734211]
 
-[sub_resource type="Animation" id="Animation_ioo17"]
-resource_name = "idle"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_aqk2v")]
-}
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1016252059]
 
-[sub_resource type="Animation" id="Animation_ic0uy"]
-resource_name = "jump"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_pkg7o")]
-}
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1563191308]
+position = Vector2(126, 71)
+rotation = 0.5235988
+shape = SubResource("RectangleShape2D_f3sb7")
 
-[sub_resource type="Animation" id="Animation_2o6r5"]
-resource_name = "kick"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_wse8f")]
-}
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D2" unique_id=274268140]
+mesh = SubResource("QuadMesh_fj7yv")
+texture = ExtResource("1_f3sb7")
 
-[sub_resource type="Animation" id="Animation_2u3nc"]
-resource_name = "sliding_kickdash"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("10_k3n1d")]
-}
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=353579525]
+position = Vector2(-156, 22)
+shape = SubResource("RectangleShape2D_lxpj2")
 
-[sub_resource type="Animation" id="Animation_udxuc"]
-resource_name = "uppercut"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("11_2o6r5")]
-}
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D" unique_id=1147097378]
+mesh = SubResource("QuadMesh_lxpj2")
+texture = ExtResource("1_f3sb7")
 
-[sub_resource type="Animation" id="Animation_wse8f"]
-resource_name = "walk"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [ExtResource("5_dwbse"), ExtResource("6_pkg7o")]
-}
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1000039392]
+position = Vector2(333, 123)
+shape = SubResource("RectangleShape2D_lxpj2")
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ic0uy"]
-_data = {
-&"RESET": SubResource("Animation_gbfbk"),
-&"fall": SubResource("Animation_k3n1d"),
-&"flying_kickdash": SubResource("Animation_hiqwa"),
-&"flying_tornado_kick": SubResource("Animation_70uel"),
-&"idle": SubResource("Animation_ioo17"),
-&"jump": SubResource("Animation_ic0uy"),
-&"punch": SubResource("Animation_2o6r5"),
-&"sliding_kickdash": SubResource("Animation_2u3nc"),
-&"uppercut": SubResource("Animation_udxuc"),
-&"walk": SubResource("Animation_wse8f")
-}
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/CollisionShape2D3" unique_id=1811135508]
+mesh = SubResource("QuadMesh_lxpj2")
+texture = ExtResource("1_f3sb7")
 
-[node name="World" type="Node3D" unique_id=1813493337]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1129721583]
+script = ExtResource("2_fj7yv")
 
-[node name="GridMap" type="GridMap" parent="." unique_id=696520472]
-mesh_library = ExtResource("1_fj7yv")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(65533, 65535, 0, 65534, 65535, 0, 65535, 65535, 0, 0, 65535, 0, 1, 65535, 0, 2, 65535, 0, 3, 65535, 0)
-}
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=958945265]
+shape = SubResource("RectangleShape2D_x0ryr")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1180919189]
-material = SubResource("ShaderMaterial_tlwt5")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
-stretch = true
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=34044061]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("1_f3sb7")
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=26428981]
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Player" type="CharacterBody3D" parent="SubViewportContainer/SubViewport" unique_id=534400808]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2606672, -0.5)
-axis_lock_linear_z = true
-axis_lock_angular_x = true
-axis_lock_angular_y = true
-axis_lock_angular_z = true
-script = ExtResource("3_036b0")
-
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Player" unique_id=981291168]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
-fov = 45.0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewportContainer/SubViewport/Player" unique_id=1111828607]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_lxpj2")
-
-[node name="Sprite3D" type="Sprite3D" parent="SubViewportContainer/SubViewport/Player" unique_id=472198156]
-offset = Vector2(0, 128)
-double_sided = false
-texture = ExtResource("4_aqk2v")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Player" unique_id=287707076]
-libraries/ = SubResource("AnimationLibrary_ic0uy")
-
-[node name="Label" type="Label" parent="SubViewportContainer/SubViewport" unique_id=824954894]
-offset_left = 245.0
-offset_top = -1.0
-offset_right = 961.0
-offset_bottom = 288.0
-theme_override_font_sizes/font_size = 28
-text = "Z = jump
-X = punch
-Z + X = flying tornado kick
-X + in air = flying kickdash
-X + just landed = sliding kickdash
-X then Z = uppercut (knocks enemy into air)"
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=897215429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4578968, 1.2834611)
-light_energy = 16.0
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=648129712]
