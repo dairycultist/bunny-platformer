@@ -1,5 +1,7 @@
 extends Area2D
 
+@export var next_level: PackedScene = preload("res://level_scenes/level1.tscn")
+
 var timer := -1.0
 
 var stolen_camera: Camera2D
@@ -50,6 +52,6 @@ func _process(delta: float) -> void:
 			stolen_camera.wipe_in()
 		
 		if timer < 2.0 and timer + delta >= 2.0:
-			get_tree().change_scene_to_file("res://world.tscn")
+			get_tree().change_scene_to_packed(next_level)
 	
 		timer += delta

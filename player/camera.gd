@@ -11,7 +11,7 @@ var pb_timer := 0.0
 
 func _ready() -> void:
 	
-	$Wipe.visible = true
+	$CanvasLayer.visible = true
 	wipe_out()
 
 func _process(delta: float) -> void:
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 	
 	zoom = Vector2(c, c)
 	
-	$Wipe.position.y = wipe_fac * wipe_fac * -sign(wipe_fac) * height_in_pixels * 2.0
+	$CanvasLayer/Wipe.pivot_offset.y = wipe_fac * wipe_fac * sign(wipe_fac) * height_in_pixels * 2.5
 	wipe_fac = move_toward(wipe_fac, wipe_to, delta)
 
 func shake():

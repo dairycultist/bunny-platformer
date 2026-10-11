@@ -1,12 +1,17 @@
 extends CharacterBody2D
 class_name Player
 
+const GRAVITY = 600.0
+
 const WALK_SPEED = 100.0
 const WALK_ACCELERATION = 3.5
+
 const RUN_SPEED = 180.0
 const RUN_ACCELERATION = 0.2
+
 const JUMP_VELOCITY = -210.0
 const ROLL_JUMP_VELOCITY = -140.0
+
 const ROLL_DRAG = 0.5
 const ROLL_BRAKES = 2.0
 
@@ -46,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	
-	velocity.y += 600.0 * delta
+	velocity.y += GRAVITY * delta
 	
 	if Input.is_action_just_pressed("jump"):
 		

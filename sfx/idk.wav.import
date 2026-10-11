@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://cx830l8lm8emy"
-path="res://.godot/imported/carrot.wav-e410ac80eabc7e3254e368bc3568979f.sample"
+uid="uid://bwbngfndrc6ho"
+path="res://.godot/imported/idk.wav-461fa53f52408a32f05989a861dfc5f5.sample"
 
 [deps]
 
-source_file="res://carrot.wav"
-dest_files=["res://.godot/imported/carrot.wav-e410ac80eabc7e3254e368bc3568979f.sample"]
+source_file="res://sfx/idk.wav"
+dest_files=["res://.godot/imported/idk.wav-461fa53f52408a32f05989a861dfc5f5.sample"]
 
 [params]
 
