@@ -15,6 +15,10 @@ run/main_scene="uid://dtkmryync4m25"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SaveData="*uid://pipjm6cr6v8f"
+
 [display]
 
 window/stretch/mode="canvas_items"

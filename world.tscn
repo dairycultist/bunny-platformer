@@ -316,7 +316,20 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("13_cbp6q")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera" unique_id=1227224426]
+
+[node name="ColorRect" type="ColorRect" parent="Player/Camera/CanvasLayer" unique_id=49279092]
+offset_right = 237.0
+offset_bottom = 103.0
+color = Color(0, 0, 0, 0.58431375)
+
+[node name="Timer" type="Label" parent="Player/Camera/CanvasLayer" unique_id=1959482181]
+offset_right = 107.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 32
+
 [node name="Wipe" type="Sprite2D" parent="Player/Camera" unique_id=1587886831]
+visible = false
 z_index = 999
 texture_repeat = 2
 texture = ExtResource("11_cbp6q")

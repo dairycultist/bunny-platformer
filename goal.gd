@@ -27,6 +27,8 @@ func _ready() -> void:
 		stolen_sprite_velocity = body.velocity
 		stolen_sprite.texture = load("res://player/player_roll.png")
 		
+		SaveData.on_end_level(stolen_camera.pb_timer)
+		
 		body.queue_free()
 	)
 
@@ -34,7 +36,7 @@ func _process(delta: float) -> void:
 	
 	# hover up and down animation
 	$Sprite.position.y = sin(Time.get_ticks_msec() / 1000.0) * 3.0
-		
+	
 	if timer >= 0.0:
 		
 		stolen_camera.position = lerp(stolen_camera.position, Vector2.ZERO, delta)
