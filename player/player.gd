@@ -38,11 +38,9 @@ func _physics_process(delta: float) -> void:
 		
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
-			$Jump.play()
 		elif state == State.NORMAL:
 			state = State.ROLLING
 			velocity.y = ROLL_JUMP_VELOCITY
-			$Roll.play()
 	
 	#elif Input.is_action_just_pressed("ui_down"):
 		#if state == State.NORMAL:
