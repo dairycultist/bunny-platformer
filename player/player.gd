@@ -93,7 +93,10 @@ func _physics_process(delta: float) -> void:
 		State.NORMAL:
 			$Sprite.rotation = 0.0
 			if not is_on_floor():
-				$Animation.play("Jump")
+				if Input.is_action_just_pressed("jump"):
+					$Animation.play("Jump")
+				elif $Animation.current_animation != "Jump":
+					$Animation.play("Fall")
 			elif direction:
 				$Animation.play("Run", -1, abs(velocity.x) * 5.0 / RUN_SPEED + 1.0)
 			else:

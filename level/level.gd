@@ -26,7 +26,14 @@ func _ready() -> void:
 	level_boundary.add_child(right_collider)
 
 func attempt_collect_at(world_position: Vector2):
-	local_to_map(world_position)
+	
+	var cell_position := local_to_map(world_position)
+	
+	# very dumb system but idc rn
+	var atlas_coords := get_cell_atlas_coords(cell_position)
+	
+	if atlas_coords == Vector2i(3, 4):
+		print(atlas_coords)
 
 func attempt_break_at(world_position: Vector2):
 	pass

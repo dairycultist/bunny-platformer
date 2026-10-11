@@ -19,6 +19,33 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
 size = Vector2(16, 16)
 
+[sub_resource type="Animation" id="Animation_2o6r5"]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_aqk2v")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_036b0"]
 resource_name = "Idle"
 tracks/0/type = "value"
@@ -200,6 +227,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gbfbk"]
 _data = {
+&"Fall": SubResource("Animation_2o6r5"),
 &"Idle": SubResource("Animation_036b0"),
 &"Jump": SubResource("Animation_k3n1d"),
 &"RESET": SubResource("Animation_dwbse"),
