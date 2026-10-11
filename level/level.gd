@@ -1,7 +1,14 @@
 extends TileMapLayer
 
+@export var camera: Camera2D
+
 func _ready() -> void:
 	
+	# camera limit
+	camera.limit_left = get_used_rect().position.x * 16
+	camera.limit_right = (get_used_rect().position.x + get_used_rect().size.x) * 16
+	
+	# collider
 	var level_boundary := StaticBody2D.new()
 	add_child(level_boundary)
 	
