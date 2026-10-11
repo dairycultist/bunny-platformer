@@ -4,8 +4,8 @@ const WALK_SPEED = 100.0
 const WALK_ACCELERATION = 3.5
 const RUN_SPEED = 180.0
 const RUN_ACCELERATION = 0.2
-const JUMP_VELOCITY = -210.0
-const ROLL_JUMP_VELOCITY = -120.0
+const JUMP_VELOCITY = -215.0
+const ROLL_JUMP_VELOCITY = -150.0
 const ROLL_DRAG = 0.5
 const ROLL_BRAKES = 2.0
 
@@ -22,22 +22,26 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
+	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
+	
 	velocity.y += 600.0 * delta
 	
-	if Input.is_action_just_pressed("ui_up"):
+	if Input.is_action_just_pressed("jump"):
 		
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			$Jump.play()
 		elif state == State.NORMAL:
 			state = State.ROLLING
 			velocity.y = ROLL_JUMP_VELOCITY
+			$Roll.play()
 	
 	#elif Input.is_action_just_pressed("ui_down"):
 		#if state == State.NORMAL:
 			#state = State.ROLLING
 	
 	# left/right movement (different depending on rolling or not)
-	var direction := Input.get_axis("ui_left", "ui_right")
+	var direction := Input.get_axis("move_left", "move_right")
 	
 	match state:
 		State.NORMAL:
