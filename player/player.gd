@@ -26,9 +26,9 @@ func _physics_process(delta: float) -> void:
 	
 	level.attempt_collect_at(global_position)
 	
-	if state == State.ROLLING:
-		level.attempt_break_at(global_position + Vector2(1.0, 0.0))
-		level.attempt_break_at(global_position - Vector2(1.0, 0.0))
+	if state == State.ROLLING and abs(velocity.x) > RUN_SPEED:
+		level.attempt_break_at(global_position + Vector2(16.0, 0.0))
+		level.attempt_break_at(global_position - Vector2(16.0, 0.0))
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	

@@ -25,15 +25,26 @@ func _ready() -> void:
 	right_collider.shape.distance = (get_used_rect().position.x + get_used_rect().size.x) * -16
 	level_boundary.add_child(right_collider)
 
-func attempt_collect_at(world_position: Vector2):
+func attempt_collect_at(world_position: Vector2) -> bool:
 	
 	var cell_position := local_to_map(world_position)
+	var id := get_cell_source_id(cell_position)
 	
-	# very dumb system but idc rn
-	var atlas_coords := get_cell_atlas_coords(cell_position)
+	if id == 2: # id of carrots
+		set_cell(cell_position)
+		$Carrot.play()
+		return true
 	
-	if atlas_coords == Vector2i(3, 4):
-		print(atlas_coords)
+	return false
 
-func attempt_break_at(world_position: Vector2):
-	pass
+func attempt_break_at(world_position: Vector2) -> bool:
+	
+	var cell_position := local_to_map(world_position)
+	var id := get_cell_source_id(cell_position)
+	
+	if id == 1: # id of breakables
+		set_cell(cell_position)
+		$BreakBlock.play()
+		return true
+	
+	return false
