@@ -284,6 +284,7 @@ camera = NodePath("../Player/Camera")
 
 [node name="Carrot" type="AudioStreamPlayer2D" parent="TileMapLayer" unique_id=1548933214]
 stream = ExtResource("8_2o6r5")
+volume_db = 2.0
 
 [node name="BreakBlock" type="AudioStreamPlayer2D" parent="TileMapLayer" unique_id=1672607199]
 stream = ExtResource("7_70uel")
@@ -295,6 +296,7 @@ script = ExtResource("15_2u3nc")
 [node name="EndLevel" type="AudioStreamPlayer2D" parent="Goal" unique_id=807356433]
 position = Vector2(-18, -16)
 stream = ExtResource("9_udxuc")
+volume_db = 8.0
 
 [node name="Sprite" type="Sprite2D" parent="Goal" unique_id=538483807]
 texture_filter = 1
