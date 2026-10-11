@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c4fqtmfkm3pau" path="res://player/player_roll_trail.png" id="14_26xuy"]
 [ext_resource type="Script" uid="uid://dvj1i0rvwgwxr" path="res://goal.gd" id="15_2u3nc"]
 [ext_resource type="Texture2D" uid="uid://bn4mvk0reir7e" path="res://level/big_carrot.png" id="15_hiqwa"]
+[ext_resource type="Texture2D" uid="uid://k3k0arjpt64t" path="res://level/breakable_particle.png" id="16_bc84e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxpj2"]
 radius = 32.0
@@ -29,8 +30,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6489362, 0.6067416), -0.997503
 point_count = 3
 
 [sub_resource type="Gradient" id="Gradient_26xuy"]
-offsets = PackedFloat32Array(0, 0.7407407, 1)
-colors = PackedColorArray(1, 1, 1, 0.6156863, 1, 1, 1, 0.05490196, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0, 0.35185185, 0.7407407, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.8901961, 1, 1, 1, 0.05490196, 1, 1, 1, 0)
 
 [sub_resource type="Gradient" id="Gradient_bc84e"]
 offsets = PackedFloat32Array(0)
@@ -351,7 +352,7 @@ texture = ExtResource("11_cbp6q")
 region_enabled = true
 region_rect = Rect2(0, 0, 1000, 256)
 
-[node name="FastParticles" type="CPUParticles2D" parent="Player" unique_id=1588240452]
+[node name="BreakingRollParticles" type="CPUParticles2D" parent="Player" unique_id=1588240452]
 texture_filter = 1
 emitting = false
 amount = 16
@@ -369,6 +370,18 @@ color_initial_ramp = SubResource("Gradient_bc84e")
 [node name="Sprite" type="Sprite2D" parent="Player" unique_id=34044061]
 texture_filter = 1
 texture = ExtResource("3_tlwt5")
+
+[node name="BreakingBlockParticles" type="CPUParticles2D" parent="Player" unique_id=1711475963]
+emitting = false
+amount = 4
+texture = ExtResource("16_bc84e")
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 600)
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
 
 [node name="Step" type="AudioStreamPlayer2D" parent="Player" unique_id=1058680562]
 stream = ExtResource("4_ioo17")

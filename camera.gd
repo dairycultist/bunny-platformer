@@ -5,6 +5,8 @@ extends Camera2D
 var wipe_fac := 0.0
 var wipe_to := 0.0
 
+var shake_amt := 0.0
+
 var pb_timer := 0.0
 
 func _ready() -> void:
@@ -13,6 +15,9 @@ func _ready() -> void:
 	wipe_out()
 
 func _process(delta: float) -> void:
+	
+	offset = Vector2(randfn(0.0, 1.0), randfn(0.0, 1.0)).normalized() * shake_amt
+	shake_amt = move_toward(shake_amt, 0.0, 30.0 * delta)
 	
 	pb_timer += delta
 	$CanvasLayer/Timer.text = "Curr: " + _format_time(pb_timer)
@@ -25,6 +30,9 @@ func _process(delta: float) -> void:
 	
 	$Wipe.position.y = wipe_fac * wipe_fac * -sign(wipe_fac) * height_in_pixels * 2.0
 	wipe_fac = move_toward(wipe_fac, wipe_to, delta)
+
+func shake():
+	shake_amt = 4.0
 
 func wipe_in():
 	wipe_fac = -1.0

@@ -32,13 +32,17 @@ func _physics_process(delta: float) -> void:
 	level.attempt_collect_at(global_position - Vector2(0.0, 8.0))
 	
 	if state == State.ROLLING and abs(velocity.x) > RUN_SPEED:
-		level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0))
-		$FastParticles.emitting = true
-		$FastParticles.angle_min = $Sprite.rotation
-		$FastParticles.angle_max = $Sprite.rotation
-		$FastParticles.color_initial_ramp.set_color(0.0, Color.from_ok_hsl($Sprite.rotation / PI / 2.0, 1.0, 0.75))
+		
+		if level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0)):
+			$Camera.shake()
+			$BreakingBlockParticles.emitting = true
+		
+		$BreakingRollParticles.emitting = true
+		$BreakingRollParticles.angle_min = $Sprite.rotation
+		$BreakingRollParticles.angle_max = $Sprite.rotation
+		$BreakingRollParticles.color_initial_ramp.set_color(0.0, Color.from_ok_hsl($Sprite.rotation / PI / 2.0, 1.0, 0.75))
 	else:
-		$FastParticles.emitting = false
+		$BreakingRollParticles.emitting = false
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	
