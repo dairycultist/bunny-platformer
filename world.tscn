@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://copocvd3ptf3b" path="res://break_block.wav" id="7_70uel"]
 [ext_resource type="AudioStream" uid="uid://cx830l8lm8emy" path="res://carrot.wav" id="8_2o6r5"]
 [ext_resource type="AudioStream" uid="uid://dw1we10mk8kqj" path="res://end_level.wav" id="9_udxuc"]
-[ext_resource type="Texture2D" uid="uid://broycc76gxur3" path="res://icon.svg" id="11_ikiii"]
+[ext_resource type="Texture2D" uid="uid://phslhskrmtpa" path="res://level/wipe.png" id="11_cbp6q"]
 [ext_resource type="Script" uid="uid://b4qpv0qb3eo88" path="res://camera_keep_height.gd" id="13_cbp6q"]
 [ext_resource type="Script" uid="uid://dvj1i0rvwgwxr" path="res://goal.gd" id="15_2u3nc"]
 [ext_resource type="Texture2D" uid="uid://bn4mvk0reir7e" path="res://level/big_carrot.png" id="15_hiqwa"]
@@ -305,9 +305,9 @@ shape = SubResource("CircleShape2D_lxpj2")
 [node name="Wipe" type="Sprite2D" parent="Goal" unique_id=1587886831]
 z_index = 999
 texture_repeat = 2
-texture = ExtResource("11_ikiii")
+texture = ExtResource("11_cbp6q")
 region_enabled = true
-region_rect = Rect2(0, 0, 1000, 400)
+region_rect = Rect2(0, 0, 1000, 256)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1129721583 node_paths=PackedStringArray("level")]
 position = Vector2(0, 64)
