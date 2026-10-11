@@ -22,10 +22,10 @@ func _ready() -> void:
 		
 		var player_sprite := body.get_node("Sprite")
 		stolen_sprite = player_sprite.duplicate()
+		add_child(stolen_sprite)
 		stolen_sprite.global_position = player_sprite.global_position
 		stolen_sprite_velocity = body.velocity
 		stolen_sprite.texture = load("res://player/player_roll.png")
-		add_child(stolen_sprite)
 		
 		body.queue_free()
 	)
@@ -39,8 +39,6 @@ func _process(delta: float) -> void:
 		
 		stolen_camera.position = lerp(stolen_camera.position, Vector2.ZERO, delta)
 		stolen_camera.height_in_pixels *= 1.0 - delta * 0.05
-		
-		print(stolen_sprite_velocity)
 		
 		stolen_sprite.position += stolen_sprite_velocity * delta
 		stolen_sprite.rotation += 0.02 * stolen_sprite_velocity.x * delta
