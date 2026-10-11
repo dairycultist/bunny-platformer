@@ -16,10 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://cx830l8lm8emy" path="res://carrot.wav" id="8_2o6r5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_036b0"]
-radius = 8.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
-size = Vector2(16, 16)
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_2o6r5"]
 resource_name = "Fall"
@@ -308,11 +305,9 @@ stream = ExtResource("5_wse8f")
 [node name="Jump" type="AudioStreamPlayer2D" parent="Player" unique_id=2102811749]
 stream = ExtResource("6_ioo17")
 
-[node name="SlopeCollider" type="CollisionShape2D" parent="Player" unique_id=958945265]
+[node name="Collider" type="CollisionShape2D" parent="Player" unique_id=958945265]
+position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_036b0")
-
-[node name="LedgeCollider" type="CollisionShape2D" parent="Player" unique_id=273989421]
-shape = SubResource("RectangleShape2D_036b0")
 
 [node name="Animation" type="AnimationPlayer" parent="Player" unique_id=484171174]
 libraries/ = SubResource("AnimationLibrary_gbfbk")

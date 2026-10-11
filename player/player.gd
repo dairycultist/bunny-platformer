@@ -27,8 +27,7 @@ func _physics_process(delta: float) -> void:
 	level.attempt_collect_at(global_position)
 	
 	if state == State.ROLLING and abs(velocity.x) > RUN_SPEED:
-		level.attempt_break_at(global_position + Vector2(16.0, 0.0))
-		level.attempt_break_at(global_position - Vector2(16.0, 0.0))
+		level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0))
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	
@@ -41,10 +40,6 @@ func _physics_process(delta: float) -> void:
 		elif state == State.NORMAL:
 			state = State.ROLLING
 			velocity.y = ROLL_JUMP_VELOCITY
-	
-	#elif Input.is_action_just_pressed("ui_down"):
-		#if state == State.NORMAL:
-			#state = State.ROLLING
 	
 	# left/right movement (different depending on rolling or not)
 	var direction := Input.get_axis("move_left", "move_right")
@@ -65,11 +60,10 @@ func _physics_process(delta: float) -> void:
 			
 			# when rolling, you can slow yourself down whenever, but can only
 			# speed yourself up if you're in the air and slower than walk speed
-			if direction:
-				if not is_on_floor() and abs(velocity.x) < WALK_SPEED:
-					velocity.x = move_toward(velocity.x, WALK_SPEED * direction, WALK_SPEED * WALK_ACCELERATION * delta)
-				elif sign(velocity.x) != sign(direction):
-					velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_BRAKES * delta)
+			if direction and not is_on_floor() and abs(velocity.x) < WALK_SPEED:
+				velocity.x = move_toward(velocity.x, WALK_SPEED * direction, WALK_SPEED * WALK_ACCELERATION * delta)
+			elif direction and sign(velocity.x) != sign(direction):
+				velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_BRAKES * delta)
 			else:
 				velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_DRAG * delta)
 
@@ -82,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and state == State.ROLLING:
 		velocity = prev_velocity - get_floor_normal() * (prev_velocity.dot(get_floor_normal()))
 		
-		if velocity.x < WALK_SPEED and (get_floor_normal() == Vector2.UP or (direction != 0.0 and sign(velocity.x) != sign(direction))):
+		if velocity.x < WALK_SPEED and (get_floor_normal() == Vector2.UP or (direction and sign(velocity.x) != sign(direction))):
 			state = State.NORMAL
 	
 	# determine animation
