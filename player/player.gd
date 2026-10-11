@@ -4,8 +4,8 @@ const WALK_SPEED = 100.0
 const WALK_ACCELERATION = 3.5
 const RUN_SPEED = 180.0
 const RUN_ACCELERATION = 0.2
-const JUMP_VELOCITY = -215.0
-const ROLL_JUMP_VELOCITY = -150.0
+const JUMP_VELOCITY = -210.0
+const ROLL_JUMP_VELOCITY = -140.0
 const ROLL_DRAG = 0.5
 const ROLL_BRAKES = 2.0
 
@@ -57,9 +57,13 @@ func _physics_process(delta: float) -> void:
 				
 		State.ROLLING:
 			
-			# when rolling, you can slow yourself down, but you can't speed yourself up
-			if direction and sign(velocity.x) != sign(direction):
-				velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_BRAKES * delta)
+			# when rolling, you can slow yourself down whenever, but can only
+			# speed yourself up if you're in the air and slower than walk speed
+			if direction:
+				if not is_on_floor() and abs(velocity.x) < WALK_SPEED:
+					velocity.x = move_toward(velocity.x, WALK_SPEED * direction, WALK_SPEED * WALK_ACCELERATION * delta)
+				elif sign(velocity.x) != sign(direction):
+					velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_BRAKES * delta)
 			else:
 				velocity = velocity.normalized() * lerp(velocity.length(), 0.0, ROLL_DRAG * delta)
 
@@ -82,7 +86,9 @@ func _physics_process(delta: float) -> void:
 	match state:
 		State.NORMAL:
 			$Sprite.rotation = 0.0
-			if direction:
+			if not is_on_floor():
+				$Animation.play("Jump")
+			elif direction:
 				$Animation.play("Run", -1, abs(velocity.x) * 5.0 / RUN_SPEED + 1.0)
 			else:
 				$Animation.play("Idle")
