@@ -33,6 +33,12 @@ func _physics_process(delta: float) -> void:
 	
 	if state == State.ROLLING and abs(velocity.x) > RUN_SPEED:
 		level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0))
+		$FastParticles.emitting = true
+		$FastParticles.angle_min = $Sprite.rotation
+		$FastParticles.angle_max = $Sprite.rotation
+		$FastParticles.color_initial_ramp.set_color(0.0, Color.from_ok_hsl($Sprite.rotation / PI / 2.0, 1.0, 0.75))
+	else:
+		$FastParticles.emitting = false
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	
@@ -48,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	
 	elif Input.is_action_pressed("crouch"):
 		
-		if state == State.NORMAL and is_on_floor() and not is_floor_flat():
+		if state == State.NORMAL and is_on_floor() and (not is_floor_flat() or abs(velocity.x) > WALK_SPEED):
 			state = State.ROLLING
 	
 	# left/right movement (different depending on rolling or not)

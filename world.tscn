@@ -17,11 +17,24 @@
 [ext_resource type="AudioStream" uid="uid://dw1we10mk8kqj" path="res://end_level.wav" id="9_udxuc"]
 [ext_resource type="Texture2D" uid="uid://phslhskrmtpa" path="res://level/wipe.png" id="11_cbp6q"]
 [ext_resource type="Script" uid="uid://b4qpv0qb3eo88" path="res://camera.gd" id="13_cbp6q"]
+[ext_resource type="Texture2D" uid="uid://c4fqtmfkm3pau" path="res://player/player_roll_trail.png" id="14_26xuy"]
 [ext_resource type="Script" uid="uid://dvj1i0rvwgwxr" path="res://goal.gd" id="15_2u3nc"]
 [ext_resource type="Texture2D" uid="uid://bn4mvk0reir7e" path="res://level/big_carrot.png" id="15_hiqwa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxpj2"]
 radius = 32.0
+
+[sub_resource type="Curve" id="Curve_cbp6q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6489362, 0.6067416), -0.997503, -0.997503, 0, 0, Vector2(1, 0), -2.1878014, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_26xuy"]
+offsets = PackedFloat32Array(0, 0.7407407, 1)
+colors = PackedColorArray(1, 1, 1, 0.6156863, 1, 1, 1, 0.05490196, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_bc84e"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_036b0"]
 radius = 7.0
@@ -337,6 +350,21 @@ texture_repeat = 2
 texture = ExtResource("11_cbp6q")
 region_enabled = true
 region_rect = Rect2(0, 0, 1000, 256)
+
+[node name="FastParticles" type="CPUParticles2D" parent="Player" unique_id=1588240452]
+texture_filter = 1
+emitting = false
+amount = 16
+texture = ExtResource("14_26xuy")
+lifetime = 0.5
+direction = Vector2(-1, -1)
+spread = 20.0
+gravity = Vector2(0, 0)
+linear_accel_min = -15.0
+linear_accel_max = -15.0
+scale_amount_curve = SubResource("Curve_cbp6q")
+color_ramp = SubResource("Gradient_26xuy")
+color_initial_ramp = SubResource("Gradient_bc84e")
 
 [node name="Sprite" type="Sprite2D" parent="Player" unique_id=34044061]
 texture_filter = 1
