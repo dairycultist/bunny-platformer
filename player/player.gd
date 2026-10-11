@@ -14,6 +14,8 @@ enum State {
 	ROLLING
 }
 
+@export var level: Level
+
 var state: State
 
 func _process(_delta: float) -> void:
@@ -21,6 +23,12 @@ func _process(_delta: float) -> void:
 	$Camera.global_position.y = 0.0
 
 func _physics_process(delta: float) -> void:
+	
+	level.attempt_collect_at(global_position)
+	
+	if state == State.ROLLING:
+		level.attempt_break_at(global_position + Vector2(1.0, 0.0))
+		level.attempt_break_at(global_position - Vector2(1.0, 0.0))
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	

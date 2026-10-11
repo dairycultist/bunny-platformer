@@ -1,4 +1,5 @@
 extends TileMapLayer
+class_name Level
 
 @export var camera: Camera2D
 
@@ -23,3 +24,9 @@ func _ready() -> void:
 	right_collider.shape.normal = Vector2(-1.0, 0.0)
 	right_collider.shape.distance = (get_used_rect().position.x + get_used_rect().size.x) * -16
 	level_boundary.add_child(right_collider)
+
+func attempt_collect_at(world_position: Vector2):
+	local_to_map(world_position)
+
+func attempt_break_at(world_position: Vector2):
+	pass
