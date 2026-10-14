@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://duwo2ipxg2d2g" path="res://level/atlas.png" id="1_gk3jh"]
 [ext_resource type="Texture2D" uid="uid://cywu6j8v3y8hn" path="res://level/breakable.png" id="2_yl1e1"]
-[ext_resource type="Texture2D" uid="uid://883lk42yoaeo" path="res://level/carrot.png" id="3_vs3f4"]
+[ext_resource type="Texture2D" uid="uid://883lk42yoaeo" path="res://level/collectable.png" id="3_vs3f4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sbyfq"]
 texture = ExtResource("1_gk3jh")
@@ -67,12 +67,13 @@ texture = ExtResource("2_yl1e1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dc21g"]
 texture = ExtResource("3_vs3f4")
-0:0/animation_columns = 4
-0:0/animation_speed = 5.0
-0:0/animation_frame_0/duration = 1.0
+0:0/animation_columns = 5
+0:0/animation_speed = 15.0
+0:0/animation_frame_0/duration = 15.0
 0:0/animation_frame_1/duration = 1.0
 0:0/animation_frame_2/duration = 1.0
 0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
 0:0/0 = 0
 
 [resource]
