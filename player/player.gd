@@ -3,11 +3,13 @@ class_name Player
 
 const GRAVITY = 600.0
 
-const WALK_SPEED = 100.0
-const WALK_ACCELERATION = 3.5
+const WALK_SPEED = 90.0
+const WALK_ACCELERATION = 6.5
 
-const RUN_SPEED = 180.0
-const RUN_ACCELERATION = 0.2
+const RUN_SPEED = 140.0
+const RUN_ACCELERATION = 0.3
+
+const BREAKING_ROLL_SPEED = 180.0
 
 const JUMP_VELOCITY = -210.0
 const ROLL_JUMP_VELOCITY = -140.0
@@ -36,7 +38,7 @@ func _physics_process(delta: float) -> void:
 	level.attempt_collect_at(global_position)
 	level.attempt_collect_at(global_position - Vector2(0.0, 8.0))
 	
-	if state == State.ROLLING and abs(velocity.x) > RUN_SPEED:
+	if state == State.ROLLING and abs(velocity.x) >= BREAKING_ROLL_SPEED:
 		
 		if level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0)):
 			$Camera.shake()
@@ -72,9 +74,10 @@ func _physics_process(delta: float) -> void:
 		State.NORMAL:
 			
 			# when running, you accelerate faster when you're going slower than a walk
+			# or changing directions
 			if direction:
 				if abs(velocity.x) < WALK_SPEED or sign(velocity.x) != sign(direction):
-					velocity.x = move_toward(velocity.x, RUN_SPEED * direction, WALK_SPEED * WALK_ACCELERATION * delta)
+					velocity.x = move_toward(velocity.x, RUN_SPEED * direction, RUN_SPEED * WALK_ACCELERATION * delta)
 				else:
 					velocity.x = move_toward(velocity.x, RUN_SPEED * direction, RUN_SPEED * RUN_ACCELERATION * delta)
 			else:
