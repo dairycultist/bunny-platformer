@@ -33,6 +33,8 @@ func attempt_collect_at(world_position: Vector2) -> bool:
 	if id == 2: # id of carrots
 		set_cell(cell_position)
 		$Carrot.play()
+		$CollectableParticle.position = map_to_local(cell_position)
+		$CollectableParticle.emitting = true
 		return true
 	
 	return false
@@ -45,6 +47,8 @@ func attempt_break_at(world_position: Vector2) -> bool:
 	if id == 1: # id of breakables
 		set_cell(cell_position)
 		$BreakBlock.play()
+		$BreakingBlockParticles.position = map_to_local(cell_position)
+		$BreakingBlockParticles.emitting = true
 		return true
 	
 	return false

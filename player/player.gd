@@ -40,7 +40,6 @@ func _physics_process(delta: float) -> void:
 		
 		if level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0)):
 			$Camera.shake()
-			$BreakingBlockParticles.emitting = true
 		
 		$BreakingRollParticles.emitting = true
 		$BreakingRollParticles.angle_min = $Sprite.rotation

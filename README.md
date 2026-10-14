@@ -5,6 +5,7 @@ end level jingle https://www.beepbox.co/#9n31sbk0l00e00t3Ma7g0fj07r1i0o435T0v2u0
 crash landing sequence https://www.beepbox.co/player/#song=9n31sbk0l00e05t1Ka7g0gj07r0i0o432T0v1u00f0qo012d07w7h0E112T1v1uaaf0q0x10kb1d35A2F0BcQ2d00Pc550E2bg7eT0v1u00f214c0o4qg01d04w5h0E112T2v1u02f10w4qw02d03w0E0b0h8Q000000004ic0000000014z00000000wh8M00000000p25vIPYq9QPYQkp4AY4FjdcRSjVd56h9fnr0-1ele0QjXd56h9f09kPjc0AfBVnljte9zMunlkO4Yk3MI1j8pdVkxjj8lzRlSmVaCl0kQM4LthQ-DS-a-45c_gDEEEE9UayyADEEEE9Wk3U6jw1fhhhgjM555UZdddhfpjjp9U20FKFFKFFK9WqGXaqo2CC01jfWc-wDwqaajfE9Wk3Yp6EpZ1f8kki1fnhh84Z556QpZ1DQ6vopUaqY298O4yAk9EOdxcV2hOczye8OeoEOdxcF720Jfy74kr56NIsNR6gCD8Sdz8Of2e8UzI2fKaeUXzKeEOeE8-EEWzG4zI9Dojfg4YzhahT7stM
 
 You play as a glubbian who has crash landed on the planet zorplax, home of the treacherous zorplaxians.
+Collect zuzu gems as you parkour your way to the rendezvouz point sent to you through your crashed ship's terminal.
 
 add enemies n powerups
 
