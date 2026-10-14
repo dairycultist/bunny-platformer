@@ -19,8 +19,12 @@
 [ext_resource type="AudioStream" uid="uid://f5cvk3k6myfk" path="res://sfx/step.wav" id="17_ks033"]
 [ext_resource type="AudioStream" uid="uid://cjo6yai2iu53f" path="res://sfx/roll.wav" id="18_2du2j"]
 [ext_resource type="AudioStream" uid="uid://cnoaivnjj2tp0" path="res://sfx/jump.wav" id="19_b8wva"]
-[ext_resource type="Texture2D" uid="uid://r7b7c183ybk4" path="res://player/player_run.png" id="20_uu20l"]
+[ext_resource type="Texture2D" uid="uid://crug2rvugl1hw" path="res://player/player_jump.png" id="20_48q3s"]
 [ext_resource type="Texture2D" uid="uid://dutgb0qgjvk3q" path="res://player/player_roll.png" id="21_kcrn2"]
+[ext_resource type="Texture2D" uid="uid://bi3ifqb436ir6" path="res://player/player_run1.png" id="22_48q3s"]
+[ext_resource type="Texture2D" uid="uid://0hm5w831dpbm" path="res://player/player_run2.png" id="23_ysci2"]
+[ext_resource type="Texture2D" uid="uid://cb8mp7dl4dcqd" path="res://player/player_run3.png" id="24_y4e41"]
+[ext_resource type="Texture2D" uid="uid://cedtxlupski0x" path="res://player/player_run4.png" id="25_j552r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lxpj2"]
 radius = 32.0
@@ -52,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("20_uu20l")]
+"values": [ExtResource("20_48q3s")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -107,7 +111,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("20_uu20l")]
+"values": [ExtResource("20_48q3s")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -207,6 +211,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_pkg7o"]
 resource_name = "Run"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -214,10 +219,10 @@ tracks/0/path = NodePath("Sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("20_uu20l"), ExtResource("15_mtkjx")]
+"values": [ExtResource("22_48q3s"), ExtResource("23_ysci2"), ExtResource("24_y4e41"), ExtResource("25_j552r")]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
