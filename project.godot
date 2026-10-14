@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SaveData="*uid://pipjm6cr6v8f"
+Persistent="*uid://pipjm6cr6v8f"
 
 [display]
 

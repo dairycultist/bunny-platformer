@@ -1,7 +1,5 @@
 extends Area2D
 
-@export var next_level: PackedScene = preload("res://level_scenes/level1.tscn")
-
 var timer := -1.0
 
 var stolen_camera: Camera2D
@@ -33,7 +31,7 @@ func _ready() -> void:
 		stolen_sprite_particles = stolen_sprite.get_node("BreakingRollParticles")
 		stolen_sprite_particles.emitting = true
 		
-		SaveData.on_end_level(stolen_camera.pb_timer)
+		Persistent.on_end_level(stolen_camera.pb_timer)
 		
 		body.queue_free()
 	)
@@ -65,6 +63,6 @@ func _process(delta: float) -> void:
 			stolen_camera.wipe_in()
 		
 		if timer < 2.0 and timer + delta >= 2.0:
-			get_tree().change_scene_to_packed(next_level)
+			Persistent.next_level()
 	
 		timer += delta

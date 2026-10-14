@@ -11,10 +11,11 @@
 [ext_resource type="AudioStream" uid="uid://dw1we10mk8kqj" path="res://sfx/end_level.wav" id="9_ioudl"]
 [ext_resource type="Script" uid="uid://wmjpp8vosouw" path="res://player/player.gd" id="11_qk2g4"]
 [ext_resource type="Script" uid="uid://b4qpv0qb3eo88" path="res://player/camera.gd" id="12_wa6x4"]
-[ext_resource type="Shader" uid="uid://fpvlsvc7f457" path="res://level_scenes/portal.gdshader" id="12_ysci2"]
+[ext_resource type="Shader" uid="uid://fpvlsvc7f457" path="res://level/portal.gdshader" id="12_ysci2"]
 [ext_resource type="Texture2D" uid="uid://phslhskrmtpa" path="res://level/wipe.png" id="13_1bs4x"]
 [ext_resource type="Texture2D" uid="uid://c4fqtmfkm3pau" path="res://player/player_roll_trail.png" id="14_kkc88"]
 [ext_resource type="Texture2D" uid="uid://cow300j11pdr3" path="res://player/player_idle.png" id="15_mtkjx"]
+[ext_resource type="AudioStream" uid="uid://d2nnt3l3k4dmf" path="res://sfx/start_level.wav" id="15_y4e41"]
 [ext_resource type="Texture2D" uid="uid://k3k0arjpt64t" path="res://level/breakable_particle.png" id="16_q8tye"]
 [ext_resource type="AudioStream" uid="uid://f5cvk3k6myfk" path="res://sfx/step.wav" id="17_ks033"]
 [ext_resource type="Texture2D" uid="uid://doy63i05smpyx" path="res://level/collectable_particle.png" id="17_ysci2"]
@@ -396,8 +397,10 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 script = ExtResource("12_wa6x4")
 
+[node name="StartLevel" type="AudioStreamPlayer" parent="Player/Camera" unique_id=1063191967]
+stream = ExtResource("15_y4e41")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera" unique_id=1227224426]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Player/Camera/CanvasLayer" unique_id=49279092]
 offset_right = 237.0
@@ -410,6 +413,7 @@ offset_bottom = 49.0
 theme_override_font_sizes/font_size = 32
 
 [node name="Wipe" type="TextureRect" parent="Player/Camera/CanvasLayer" unique_id=1408769281]
+clip_children = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -425,6 +429,25 @@ scale = Vector2(3, 3)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("13_1bs4x")
 stretch_mode = 1
+
+[node name="LevelInfo" type="Label" parent="Player/Camera/CanvasLayer/Wipe" unique_id=1699814347]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.33333
+offset_top = -36.0
+offset_right = 86.66669
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "HELLO!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite" type="Sprite2D" parent="Player" unique_id=34044061]
 z_index = 5

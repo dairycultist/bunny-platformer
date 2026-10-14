@@ -2,8 +2,9 @@ extends Camera2D
 
 @export var height_in_pixels: float = 13 * 16
 
-var wipe_fac := 0.0
-var wipe_to := 0.0
+var wipe_fac: float
+var wipe_to: float
+var wait_to_wipe: float
 
 var shake_amt := 0.0
 
@@ -21,15 +22,20 @@ func _process(delta: float) -> void:
 	
 	pb_timer += delta
 	$CanvasLayer/Timer.text = "Curr: " + _format_time(pb_timer)
-	if SaveData.best_time != -1:
-		$CanvasLayer/Timer.text += "\nBest: " + _format_time(SaveData.best_time)
+	if Persistent.best_time != -1:
+		$CanvasLayer/Timer.text += "\nBest: " + _format_time(Persistent.best_time)
 	
 	var c = get_viewport_rect().size.y / height_in_pixels
 	
 	zoom = Vector2(c, c)
 	
-	$CanvasLayer/Wipe.pivot_offset.y = wipe_fac * wipe_fac * sign(wipe_fac) * height_in_pixels * 2.5
-	wipe_fac = move_toward(wipe_fac, wipe_to, delta)
+	wait_to_wipe -= delta
+	
+	if wait_to_wipe < 0.0 and wipe_fac != wipe_to:
+		var prev_y = $CanvasLayer/Wipe/LevelInfo.global_position.y
+		$CanvasLayer/Wipe.pivot_offset.y = wipe_fac * wipe_fac * sign(wipe_fac) * height_in_pixels * 2.5
+		$CanvasLayer/Wipe/LevelInfo.global_position.y = prev_y
+		wipe_fac = move_toward(wipe_fac, wipe_to, delta)
 
 func shake():
 	shake_amt = 4.0
@@ -37,10 +43,16 @@ func shake():
 func wipe_in():
 	wipe_fac = -1.0
 	wipe_to = 0.0
+	$CanvasLayer/Wipe/LevelInfo.visible = false
 
 func wipe_out():
 	wipe_fac = 0.0
 	wipe_to = 1.0
+	
+	if Persistent.first_try_at_level:
+		wait_to_wipe = 2.0
+		$CanvasLayer/Wipe/LevelInfo.visible = true
+		$StartLevel.play()
 
 func _format_time(time) -> String:
 	
