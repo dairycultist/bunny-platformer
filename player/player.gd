@@ -43,12 +43,12 @@ func _physics_process(delta: float) -> void:
 		if level.attempt_break_at(global_position + Vector2(16.0 * sign(velocity.x), 0.0)):
 			$Camera.shake()
 		
-		$BreakingRollParticles.emitting = true
-		$BreakingRollParticles.angle_min = $Sprite.rotation
-		$BreakingRollParticles.angle_max = $Sprite.rotation
-		$BreakingRollParticles.color_initial_ramp.set_color(0.0, Color.from_ok_hsl($Sprite.rotation / PI / 2.0, 1.0, 0.75))
+		$Sprite/BreakingRollParticles.emitting = true
+		$Sprite/BreakingRollParticles.angle_min = $Sprite.global_rotation_degrees
+		$Sprite/BreakingRollParticles.angle_max = $Sprite.global_rotation_degrees
+		$Sprite/BreakingRollParticles.color_initial_ramp.set_color(0, Color.from_ok_hsl($Sprite.rotation / PI / 2.0, 1.0, 0.75))
 	else:
-		$BreakingRollParticles.emitting = false
+		$Sprite/BreakingRollParticles.emitting = false
 	
 	$Step.volume_linear = abs(velocity.x) / RUN_SPEED * 0.8 + 0.2 if is_on_floor() else 0.0
 	
@@ -103,10 +103,10 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and state == State.ROLLING:
 		velocity = prev_velocity - get_floor_normal() * (prev_velocity.dot(get_floor_normal()))
 		
-		# you stop rolling if you're moving slower than a walk and either:
+		# you stop rolling if you're moving slower than a run and either:
 		# - you're on a flat surface
 		# - you're on a slope but are inputting in the opposite direction of motion
-		if velocity.x < WALK_SPEED and (is_floor_flat() or (direction and sign(velocity.x) != sign(direction))):
+		if velocity.x < RUN_SPEED and (is_floor_flat() or (direction and sign(velocity.x) != sign(direction))):
 			state = State.NORMAL
 	
 	# determine animation
